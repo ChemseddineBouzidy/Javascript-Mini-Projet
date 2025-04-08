@@ -6,24 +6,26 @@
     <title>Gestion étidiants</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="CSS/custom.css">
-    <script defer src="js/script.js"></script>
+    <script defer type="module" src="js/script.js"></script>
 </head>
 <body>
         <div class="container">
             <div id="app">
                 <h1>Liste des etudiants</h1>
+                <span><button id="refresh"  class="btn btn-primary ">Actualiser la list </button></span>
                 <div
-                    class="table-responsive"
+                    class="table-responsive my-3"
                 >
                     <table
-                        class="table table-info"
+                        class="table"
                     >
                         <thead>
-                            <tr>
+                            <tr class="table-primary">
                                 <th scope="col">#ID </th>
                                 <th scope="col">Nom </th>
                                 <th scope="col">Age </th>
                                 <th scope="col">Note </th>
+                                <th scope="col">Supprimer </th>
                             </tr>
                         </thead>
                         <tbody class="liste-etudiants"> </tbody>
