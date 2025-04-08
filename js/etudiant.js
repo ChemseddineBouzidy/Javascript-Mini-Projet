@@ -1,11 +1,13 @@
 import { ENDPOINT } from "./constants.js"
 export default class Etudiant {
+    static MAX_NOTE = 20
     constructor(name, date, note) {
         this.name = name
         this.date = date
         this.note = note
     }
-    getAge = () =>{}
+    getAge = () =>{ return (new Date()).getFullYear() - new Date(this.date).getFullYear()}
+    isAdmitted = () => { return this.note >= 10 ? 'admit' : 'non admit'}
     static allEtudiants = async () => {
         const  response = await fetch(ENDPOINT)
         const etudiants = await response.json()
@@ -27,4 +29,6 @@ export default class Etudiant {
         console.log(response)
         return response
     }
+
+    
 }

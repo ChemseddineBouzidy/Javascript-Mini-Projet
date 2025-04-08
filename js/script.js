@@ -10,14 +10,17 @@ import Etudiant from "./etudiant.js";
 const displayEtudiants = async () => {
     return Etudiant.allEtudiants()
         .then((response) => {
-            return response.map((etudiant) => {
-                const { id, name, date, note } = etudiant
+            return response.map((data) => {
+                const { id, name, date, note } = data
+                const etudiant = new Etudiant(name,date,note)
+
                 return `
                     <tr>
                         <td>${id}</td>
-                        <td>${name}</td>
-                        <td>${date}</td>
-                        <td>${note}</td>
+                        <td>${etudiant.name}</td>
+                        <td>${etudiant.getAge()} ans </td>
+                        <td><span class="badge rounded-pill text-bg-${etudiant.note >= 10 ? 'success' : 'danger'}">${etudiant.note}/${Etudiant.MAX_NOTE} </span>   </td>   
+                         <td> ${etudiant.isAdmitted()} </td>                
                         <td><button class='btn btn-danger btn-sm'>Supprimer</button></td>
                     </tr>`
                 console.log(id, name, date, note)
