@@ -18,17 +18,17 @@ const displayEtudiants = async () => {
 
             response.sort((a, b) => {
                 const isNumber = typeof a[filterBySettings.column] === 'number'
-                if(isNumber){
-                    if(filterBySettings.desc){
-                        return b[filterBySettings.column]-(a[filterBySettings.column])
+                if (isNumber) {
+                    if (filterBySettings.desc) {
+                        return b[filterBySettings.column] - (a[filterBySettings.column])
                     }
-                    return a[filterBySettings.column]-(b[filterBySettings.column])
+                    return a[filterBySettings.column] - (b[filterBySettings.column])
                 }
-                if(filterBySettings.desc){
+                if (filterBySettings.desc) {
                     return b[filterBySettings.column].localeCompare(a[filterBySettings.column])
                 }
                 return a[filterBySettings.column].localeCompare(b[filterBySettings.column])
-                })
+            })
 
             return response.map((data) => {
                 const { id, name, date, note } = data
@@ -39,7 +39,7 @@ const displayEtudiants = async () => {
                         <td>${id}</td>
                         <td>${etudiant.name}</td>
                         <td>${etudiant.getAge()} ans </td>
-                        <td><span class="badge rounded-pill text-bg-${etudiant.note >= 10 ? 'success' : 'danger'}">${etudiant.note}/${Etudiant.MAX_NOTE} </span>   </td>   
+                        <td><button class="badge rounded-pill text-bg-${etudiant.note >= 10 ? 'success' : 'danger'}">${etudiant.note}/${Etudiant.MAX_NOTE} </button>   </td>   
                          <td> ${etudiant.isAdmitted()} </td>                
                         <td><button  class='btn btn-danger btn-sm delete' data-id='${id}' >Supprimer</button></td>
                     </tr>`
@@ -91,8 +91,27 @@ const init = () => {
 
 
 
+
 }
 // init()
+
+window.renderSort = (column) => {
+    if (filterBySettings.column === column) {
+        const element = document.querySelector('.sort-element[data-column='+column+'] span')
+        element.innerHTML = `<button class='btn fw-bold' onClick='toggleSprtDirection()' >${filterBySettings.desc ? '&darr;' : '&uarr;'}</button>`
+        // return `<button ${filterBySettings.desc >= 10 ? '&darr;' : '&uarr;'}"></button>`        
+    }
+}
+renderSort('id')
+renderSort('name')
+renderSort('date')
+renderSort('note')
+window.toggleSprtDirection = () => {
+    filterBySettings.desc = !filterBySettings.desc
+    renderSort(filterBySettings.column)
+    renderEtudiants()
+}
+
 renderEtudiants()
 
 
