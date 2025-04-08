@@ -1,22 +1,16 @@
 {
   "etudiants": [
     {
-      "id": 1,
-      "name": "chemseddine",
-      "date": "2003/01/09",
-      "note": 5
+      "name": "Chemseddine Bouzidy",
+      "date": "2025-04-08",
+      "note": "3",
+      "id": 1
     },
     {
-      "id": "13ad",
-      "name": "Ilyass",
-      "date": "2003-11-26",
-      "note": "20"
-    },
-    {
-      "id": "2e2c",
-      "name": "ZIAD",
-      "date": "2013-12-27",
-      "note": "20"
+      "name": "",
+      "date": "",
+      "note": "",
+      "id": 2
     }
   ]
 }

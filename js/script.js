@@ -1,5 +1,10 @@
 import Etudiant from "./etudiant.js";
 
+let filterBySettings = {
+    'column': 'id',
+    'desc': false
+
+}
 
 // if not static work with this
 // let etudiant = new Etudiant()
@@ -10,9 +15,15 @@ import Etudiant from "./etudiant.js";
 const displayEtudiants = async () => {
     return Etudiant.allEtudiants()
         .then((response) => {
+
+            response.sort((a, b) => {
+
+                return a['id'] - b['id']}
+            )
+
             return response.map((data) => {
                 const { id, name, date, note } = data
-                const etudiant = new Etudiant(name,date,note)
+                const etudiant = new Etudiant(name, date, note)
 
                 return `
                     <tr>
@@ -21,7 +32,7 @@ const displayEtudiants = async () => {
                         <td>${etudiant.getAge()} ans </td>
                         <td><span class="badge rounded-pill text-bg-${etudiant.note >= 10 ? 'success' : 'danger'}">${etudiant.note}/${Etudiant.MAX_NOTE} </span>   </td>   
                          <td> ${etudiant.isAdmitted()} </td>                
-                        <td><button class='btn btn-danger btn-sm'>Supprimer</button></td>
+                        <td><button  class='btn btn-danger btn-sm delete' data-id='${id}' >Supprimer</button></td>
                     </tr>`
                 console.log(id, name, date, note)
             })
@@ -30,12 +41,16 @@ const displayEtudiants = async () => {
 
 const addEtudiant = (event) => {
     event.preventDefault()
-    const [name,date,note]= document.querySelectorAll('#name,#date,#note')
-    const etudiant = new Etudiant(name.value,date.value,note.value)
-    console.log(name.value,date.value,note.value)
+    const [name, date, note] = document.querySelectorAll('#name,#date,#note')
+    const etudiant = new Etudiant(name.value, date.value, note.value)
+    console.log(name.value, date.value, note.value)
     etudiant.addEtudiants()
 }
+window.deleteEtudiant = (id) => {
+    Etudiant.deleteEtudiants(id).then(() => alert('étudiant supprimer'))
+    // console.log(id)
 
+}
 
 
 
@@ -46,17 +61,29 @@ const renderEtudiants = () => {
     displayEtudiants().then((data) => {
         // console.log(data.toString())
         body.innerHTML = data.join(' ') //remove ','
+        init()
     })
 }
 
 const init = () => {
     const refreshButton = document.querySelector('#refresh')
     const addButton = document.querySelector('#add')
+    const deleteHtmlButton = document.querySelectorAll('.delete')
     refreshButton.addEventListener('click', () => { renderEtudiants() })
     addButton.addEventListener('click', (event) => { addEtudiant(event) })
+    deleteHtmlButton.forEach((button) => {
+        // console.log(button.dataset.id)
+        button.addEventListener('click', (event) => {
+            // console.log(button.dataset.id)
+            window.deleteEtudiant(button.dataset.id)
+        })
+
+    })
+
+
 
 }
-init()
+// init()
 renderEtudiants()
 
 
