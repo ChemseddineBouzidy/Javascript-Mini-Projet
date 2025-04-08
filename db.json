@@ -1,22 +1,21 @@
 {
-    "etudiants" : [
-        {
-            "id": 1,
-            "name":"chemseddine",
-            "date":"2003/01/09",
-            "note": 17
-        },
-        {
-            "id": 2,
-            "name":"Zaid",
-            "date":"2013/12/26",
-            "note": 20
-        },
-        {
-            "id": 3,
-            "name":"Ilyas",
-            "date":"2003/11/26",
-            "note": 20
-        }
-    ]
+  "etudiants": [
+    {
+      "id": 1,
+      "name": "chemseddine",
+      "date": "2003/01/09",
+      "note": 17
+    },
+    {
+      "id": "cc20",
+      "name": "Chemseddine Bouzidy",
+      "note": "2"
+    },
+    {
+      "id": "aa3d",
+      "name": "Chemseddine Bouzidy",
+      "date": "2025-04-08",
+      "note": "3"
+    }
+  ]
 }

@@ -25,17 +25,33 @@ const displayEtudiants = async () => {
         })
 }
 
+const addEtudiant = (event) => {
+    event.preventDefault()
+    const [name,date,note]= document.querySelectorAll('#name,#date,#note')
+    const etudiant = new Etudiant(name.value,date.value,note.value)
+    console.log(name.value,date.value,note.value)
+    etudiant.addEtudiants()
+}
+
+
+
+
+
+
 const renderEtudiants = () => {
     const body = document.querySelector('.liste-etudiants')
-        displayEtudiants().then((data) => {
-            // console.log(data.toString())
-            body.innerHTML= data.join(' ') //remove ','
-        } )
+    displayEtudiants().then((data) => {
+        // console.log(data.toString())
+        body.innerHTML = data.join(' ') //remove ','
+    })
 }
 
 const init = () => {
-const refreshButton = document.querySelector('#refresh')
-refreshButton.addEventListener('click',()=>{renderEtudiants()})
+    const refreshButton = document.querySelector('#refresh')
+    const addButton = document.querySelector('#add')
+    refreshButton.addEventListener('click', () => { renderEtudiants() })
+    addButton.addEventListener('click', (event) => { addEtudiant(event) })
+
 }
 init()
 renderEtudiants()
