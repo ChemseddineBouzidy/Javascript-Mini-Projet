@@ -1,10 +1,10 @@
 import Etudiant from "./etudiant.js";
 
 let filterBySettings = {
-    'column': 'id',
-    'desc': false
-
+    'column': 'name',
+    'desc': true
 }
+
 
 // if not static work with this
 // let etudiant = new Etudiant()
@@ -17,9 +17,18 @@ const displayEtudiants = async () => {
         .then((response) => {
 
             response.sort((a, b) => {
-
-                return a['id'] - b['id']}
-            )
+                const isNumber = typeof a[filterBySettings.column] === 'number'
+                if(isNumber){
+                    if(filterBySettings.desc){
+                        return b[filterBySettings.column]-(a[filterBySettings.column])
+                    }
+                    return a[filterBySettings.column]-(b[filterBySettings.column])
+                }
+                if(filterBySettings.desc){
+                    return b[filterBySettings.column].localeCompare(a[filterBySettings.column])
+                }
+                return a[filterBySettings.column].localeCompare(b[filterBySettings.column])
+                })
 
             return response.map((data) => {
                 const { id, name, date, note } = data

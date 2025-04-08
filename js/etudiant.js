@@ -22,7 +22,7 @@ export default class Etudiant {
             body: JSON.stringify({
                 name: this.name,
                 date: this.date,
-                note: this.note
+                note: parseFloat(this.note)
 
             })
         })

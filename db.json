@@ -1,16 +1,28 @@
 {
   "etudiants": [
     {
-      "name": "Chemseddine Bouzidy",
-      "date": "2025-04-08",
-      "note": "3",
+      "name": "CHEMSEDDINE",
+      "date": "2003-01-09",
+      "note": 20,
       "id": 1
     },
     {
-      "name": "",
-      "date": "",
-      "note": "",
+      "name": "kamal",
+      "date": "2000-12-03",
+      "note": 15,
       "id": 2
+    },
+    {
+      "name": "ZIAD",
+      "date": "2013-12-31",
+      "note": 17,
+      "id": 3
+    },
+    {
+      "name": "Omar",
+      "date": "2006-10-10",
+      "note": 9,
+      "id": 4
     }
   ]
 }
