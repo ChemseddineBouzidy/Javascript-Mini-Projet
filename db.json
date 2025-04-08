@@ -1,0 +1,16 @@
+{
+    "etudiants" : [
+        {
+            "id": 1,
+            "name":"chemseddine",
+            "date":"2003/01/09",
+            "note": 17
+        },
+        {
+            "id": 2,
+            "name":"Zaid",
+            "date":"2013/12/26",
+            "note": 20
+        }
+    ]
+}
